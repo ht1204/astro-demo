@@ -1,0 +1,1 @@
+import"./hoisted.fcf19d90.js";const t=()=>{history.back()};class e extends HTMLElement{constructor(){super(),this.querySelector("#go-back")?.addEventListener("click",t)}}customElements.define("go-back",e);

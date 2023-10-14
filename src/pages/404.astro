@@ -1,0 +1,15 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const PAGE_NOT_FOUND_IMAGE_URL = "https://midu.dev/images/this-is-fine-404.gif";
+---
+<Layout title="Not Found - 404">
+    <div class="flex flex-col justify-center items-center">
+        <h1
+            class="text-white text-3xl text-center"
+        >
+            Page Not Found :(
+        </h1>
+        <img src={PAGE_NOT_FOUND_IMAGE_URL} alt="Page Not Found Image">
+    </div>
+</Layout>

@@ -1,0 +1,26 @@
+<go-back>
+    <button
+        id="go-back"
+        class="text-white font-bold hover:scale-100 bg-gray-700 hover:border-gray-500 px-2"
+    >
+        Go Back
+    </button>
+</go-back>
+
+<script>
+    const handleBackward = () => {
+        history.back();
+    }
+
+    class GoBackButton extends HTMLElement {
+        constructor() {
+            super();
+            
+            const btn = this.querySelector("#go-back");
+            btn?.addEventListener('click', handleBackward);
+        }
+    }
+
+    customElements.define('go-back', GoBackButton);
+
+</script>

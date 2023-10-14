@@ -1,0 +1,55 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import GoBackButton from "../../components/GoBackButton.astro";
+import { defaultImage } from "../../../public/assets/constants";
+import { getLaunchById, getRecentLaunches } from '../../api/space_service';
+
+export const prerender = false;
+
+
+const { id } = Astro.params;
+if(!id) Astro.redirect("/");
+ 
+
+// For Static Rendering.
+// export async function getStaticPaths() {
+//     const launches = await getRecentLaunches();
+//     const launchParamIds = launches.map(launchItem => ({
+//         params: { 
+//           id: launchItem.id 
+//         }
+//     }));
+//     return launchParamIds;
+// }
+
+
+const launchId = id as string;
+const launch = await getLaunchById(launchId);
+
+---
+<Layout title={`Launch #${id}`}>
+    <GoBackButton />
+    <article
+        class="flex gap-y-4 flex-col"
+    >
+        <div
+            class="flex justify-items items-center flex-col"
+        >
+            <img 
+                src={launch?.links?.patch.small ?? defaultImage} 
+                alt={launch?.name}
+                class="w-1/2"
+            >
+        </div>
+        <h2
+            class="text-4xl text-white font-bold"
+        >
+            Launch #{launch.flight_number}
+        </h2>
+        <p
+            class="text-lg"
+        >
+            {launch?.details}
+        </p>
+    </article>
+</Layout>
